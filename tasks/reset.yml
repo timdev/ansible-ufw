@@ -1,5 +1,5 @@
 ---
 
-- name: Resetting firewall
+- name: Reset ufw
   ufw:
     state: reset

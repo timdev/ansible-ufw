@@ -1,6 +1,6 @@
 ---
 
-- name: Configuring service
+- name: Ensure ufw configuration is correct
   ufw:
     state: "{{ ufw_state }}"
     logging: "{{ ufw_logging }}"
