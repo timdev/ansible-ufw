@@ -18,17 +18,18 @@
     state: "{{ item.state | default(omit) }}"
     to_ip: "{{ item.to_ip | default(omit) }}"
     to_port: "{{ item.to_port | default(omit) }}"
-  with_items: ufw_rules
+  with_items: "{{ ufw_rules }}"
 
 - name: Apply application rules
   ufw:
     name: "{{ item.name }}"
     rule: "{{ item.rule if item.rule is defined else 'allow' }}"
-  with_items: ufw_applications
+    from_ip: "{{ item.from_ip | default(omit)  }}"
+  with_items: "{{ ufw_applications }}"
 
 - name: Apply firewall configuration (/etc/default/ufw)
   template:
-    src: etc-default-ufw.j2
+    src: etc/default/ufw.j2
     dest: /etc/default/ufw
     owner: root
     group: root

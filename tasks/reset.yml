@@ -3,3 +3,4 @@
 - name: Reset ufw
   ufw:
     state: reset
+  when: ufw_reset
